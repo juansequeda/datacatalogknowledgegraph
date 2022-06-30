@@ -1,0 +1,85 @@
+@prefix : <https://ex.com/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+
+:Resource rdf:type owl:Class ;
+        rdfs:label "Resource" .
+
+:Catalog rdf:type owl:Class ;
+        rdfs:label "Catalog" .
+
+:Person rdf:type owl:Class ;
+        rdfs:label "Person" .
+
+
+:DataResource rdf:type owl:Class ;
+        rdfs:subClassOf :Resource ;
+        rdfs:label "Data Resource" .
+
+:AnalyticalResource rdf:type owl:Class ;
+        rdfs:subClassOf :Resource ;
+        rdfs:label "Analytical Resource" .
+
+:Term rdf:type owl:Class ;
+        rdfs:subClassOf :Resource ;
+        rdfs:label "Term" .
+
+:Database rdf:type owl:Class ;
+        rdfs:subClassOf :DataResource ;
+        rdfs:label "Database" .
+
+:Table rdf:type owl:Class ;
+        rdfs:subClassOf :DataResource ;
+        rdfs:label "Table" .
+
+:Column rdf:type owl:Class ;
+        rdfs:subClassOf :DataResource ;
+        rdfs:label "Column" .
+
+:TableauDashboard rdf:type owl:Class ;
+        rdfs:subClassOf :AnalyticalResource ;
+        rdfs:label "Tableau Dashboard" .
+
+:wasDerivedFrom rdf:type owl:ObjectProperty ;
+        rdfs:domain :Resource ;
+        rdfs:range :Resource ;
+        rdfs:label "was derived from" .
+
+:hasSteward rdf:type owl:ObjectProperty ;
+        rdfs:domain :Resource ;
+        rdfs:range :Person ;
+        rdfs:label "has steward" .
+
+
+:hasSubject rdf:type owl:ObjectProperty ;
+        rdfs:domain :Resource ;
+        rdfs:range :Term ;
+        rdfs:label "has subject" .
+
+:catalogsResource rdf:type owl:ObjectProperty ;
+        rdfs:domain :Catalog ;
+        rdfs:range :Resource ;
+        rdfs:label "catalogs resource" .
+
+
+:hasBroaderTerm rdf:type owl:ObjectProperty ;
+        rdfs:domain :Term ;
+        rdfs:range :Term ;
+        rdfs:label "has broader term" .
+
+:hasRelatedTerm rdf:type owl:ObjectProperty ;
+        rdfs:domain :Term ;
+        rdfs:range :Term ;
+        rdfs:label "has related term" .
+
+:hasColumn rdf:type owl:ObjectProperty ;
+        rdfs:domain :Table ;
+        rdfs:range :Column ;
+        rdfs:label "has column" .
+
+:hasTable rdf:type owl:ObjectProperty ;
+        rdfs:domain :Database ;
+        rdfs:range :Table ;
+        rdfs:label "has table" .
